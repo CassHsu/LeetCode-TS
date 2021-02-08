@@ -1,17 +1,20 @@
 function sortColors(nums: number[]): void {
-    let isConti = true;
-    let stop = 1;
-    while (isConti) {
-        isConti = false;
-        let count = nums.length - stop;
-        for (let i = 0; i < count; i++) {
-            if (nums[i] > nums[i+1]) {
-                let tmp = nums[i+1];
-                nums[i+1] = nums[i];
-                nums[i] = tmp;
-                isConti = true;
-            }
+    const count = [0,0,0];
+    for (let n of nums) {
+        count[n]++;
+    }
+
+    for (let i in nums) {
+        if (count[0] > 0) {
+            nums[i] = 0;
+            count[0]--;
+            
+        } else if (count[1] > 0) {
+            nums[i] = 1;
+            count[1]--;
+            
+        } else {
+            nums[i] = 2;
         }
-        stop++;
     }
 };
