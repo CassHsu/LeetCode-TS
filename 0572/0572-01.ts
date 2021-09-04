@@ -1,11 +1,12 @@
 function isSubtree(root: TreeNode | null, subRoot: TreeNode | null): boolean {
-    if (!root) return !subRoot;
+    if (!root || !subRoot) return false;
     
-    const isSameTree = (n1, n2) => {
-        if (!n1 || !n2) return !n1 && !n2;
-        if (n1.val !== n2.val) return false;
-        return isSameTree(n1.left, n2.left) && isSameTree(n1.right, n2.right);
-    }  
+    const isSame = (n1: TreeNode, n2: TreeNode) => {
+        if (!n1 && !n2) return true;
+        else if (n1 && n2) {
+            return (n1.val === n2.val) && isSame(n1.left, n2.left) && isSame(n1.right, n2.right);
+        } else return false;
+    }
     
-    return isSameTree(root, subRoot) || isSubtree(root.left, subRoot) || isSubtree(root.right, subRoot);
+    return isSame(root, subRoot) || isSubtree(root.left, subRoot) || isSubtree(root.right, subRoot);
 };
