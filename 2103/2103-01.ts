@@ -8,6 +8,8 @@ function countPoints(rings: string): number {
     }
     
     for (const v of m.values()) {
+        if (v.length < 3) continue
+        
         let r = false, g = false, b = false
         
         for (const c of v) {
