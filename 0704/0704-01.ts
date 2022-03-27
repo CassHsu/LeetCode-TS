@@ -1,15 +1,12 @@
 function search(nums: number[], target: number): number {
-    let l = 0;
-    let r = nums.length - 1;
+    let l = 0, r = nums.length - 1
+    
     while (l <= r) {
-        let mid = Math.floor((l + r) / 2);
-        if (nums[mid] === target) return mid;
-        
-        if (target < nums[mid]) {
-            r = mid - 1;
-        } else {
-            l = mid + 1;
-        }
+        const m = l + Math.floor((r - l) / 2)
+        if (target === nums[m]) return m
+        else if (target > nums[m]) l = m + 1
+        else r = m - 1
     }
-    return -1;
+    
+    return -1
 };
