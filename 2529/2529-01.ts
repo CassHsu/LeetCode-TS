@@ -3,8 +3,14 @@ function maximumCount(nums: number[]): number {
     let n = 0
 
     for (const num of nums) {
-        if (num > 0) p++
-        if (num < 0) n++
+        if (num > 0) {
+            p++
+            continue
+        }
+        if (num < 0) {
+            n++
+            continue
+        }
     }
 
     return Math.max(p, n)
